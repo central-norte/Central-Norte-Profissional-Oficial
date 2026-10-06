@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Central Norte Profissional</title>
+
+  <!-- Fonte Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="estilo.css">
+  <link rel="stylesheet" href="formulario.css">
+</head>
+
+<body>
+
+<main>
+
+  <!-- ======================================================
+       TELA INICIAL
+       ====================================================== -->
+
+  <header class="banner-amostra">
+
+    <span class="tag-amostra">ACESSO GRATUITO</span>
+
+    <h1>Central Norte Profissional</h1>
+
+    <p>
+      Conectamos empresas e profissionais de Norte a Sul do país.
+      Experimente nossas ferramentas, como o Tradutor de Necessidades,
+      e encontre o perfil ideal para o seu negócio!
+    </p>
+
+  </header>
+
+
+  <!-- Escolha inicial -->
+  <section id="escolha">
+
+    <h2>Teste a amostra grátis! Escolha uma opção</h2>
+
+    <button id="emprego" type="button">
+      PROCURAR UM EMPREGO
+    </button>
+
+    <button id="profissional" type="button">
+      CONTRATAR UM PROFISSIONAL
+    </button>
+
+  </section>
+
+
+  <!-- ======================================================
+       FLUXO: PROCURAR EMPREGO
+       Inicialmente oculto.
+       ====================================================== -->
+
+  <section id="procurar-emprego" style="display: none;">
+
+    <h2>Quais oportunidades você está procurando?</h2>
+
+    <label for="area">Área de atuação:</label>
+
+    <input
+      type="text"
+      id="area"
+      name="area"
+      placeholder="Digite a área de atuação"
+    >
+
+    <button id="buscar-emprego" type="button">
+      Buscar oportunidades
+    </button>
+
+
+    <!-- Resultados das vagas -->
+    <div id="resultados-emprego"></div>
+
+
+    <!-- Aviso para o candidato -->
+    <div id="aviso-candidato" class="card-secao">
+
+      <h3>
+        Mais oportunidades para você
+      </h3>
+
+      <p>
+        Para ter acesso a mais vagas e ter seu currículo enviado
+        direto para as empresas, preencha o formulário abaixo.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================
+       FLUXO: CONTRATAR PROFISSIONAL
+       Inicialmente oculto.
+       ====================================================== -->
+
+  <section id="contratar-profissional" style="display: none;">
+
+    <h2>Quais profissionais você está procurando?</h2>
+
+    <label for="profissao">Profissão:</label>
+
+    <input
+      type="text"
+      id="profissao"
+      name="profissao"
+      placeholder="Digite a profissão"
+    >
+
+    <button id="buscar-profissional" type="button">
+      Buscar profissionais
+    </button>
+
+
+    <!-- Resultados dos profissionais -->
+    <div id="resultados-profissionais"></div>
+
+  </section>
+
+
+  <!-- ======================================================
+       TRADUTOR DE NECESSIDADE
+       Aparece somente no fluxo CONTRATAR PROFISSIONAL.
+       ====================================================== -->
+
+  <section
+    id="traduzir-necessidade"
+    class="card-secao"
+    style="display: none;"
+  >
+
+    <h2>
+      Tradutor de Necessidade
+
+      <span class="amostra">
+        AMOSTRA GRÁTIS
+      </span>
+    </h2>
+
+    <p>
+      Descreva o problema da sua empresa e o sistema indicará
+      o perfil técnico ideal para resolver.
+    </p>
+
+
+    <div class="campo-busca">
+
+      <label for="texto-necessidade">
+        O que você precisa resolver?
+      </label>
+
+      <textarea
+        id="texto-necessidade"
+        rows="3"
+        placeholder="Ex: Preciso de um site para vender online e organizar o estoque..."
+      ></textarea>
+
+      <button
+        id="btn-gerar-traducao"
+        class="btn-dourado"
+        type="button"
+      >
+        Gerar Diagnóstico Grátis
+      </button>
+
+    </div>
+
+
+    <!-- Resultado/mensagem do Tradutor -->
+    <div
+      id="resultado-traducao"
+      class="resultados-container"
+    ></div>
+
+  </section>
+
+
+  <!-- ======================================================
+       FORMULÁRIO FINAL
+       O conteúdo muda conforme a opção escolhida.
+       ====================================================== -->
+
+  <section
+    id="secao-formulario-final"
+    class="card-secao"
+    style="display: none;"
+  >
+
+    <h2>Pesquisa de Satisfação</h2>
+
+    <p id="texto-recompensa">
+      Preencha os dados abaixo para finalizar sua consulta e
+      enviar sua opinião.
+    </p>
+
+
+    <form id="form-pesquisa">
+
+      <!-- ==================================================
+           CONTEXTO DO TRADUTOR
+           ================================================== -->
+
+      <input
+        type="hidden"
+        id="contexto-traducao"
+        value=""
+      >
+
+
+      <!-- ==================================================
+           IDENTIFICAÇÃO
+           ================================================== -->
+
+      <div class="grupo-campo">
+
+        <label for="f-nome">
+          Nome Completo:
+        </label>
+
+        <input
+          type="text"
+          id="f-nome"
+          name="f-nome"
+          placeholder="Seu nome completo"
+          required
+        >
+
+      </div>
+
+
+      <div class="grupo-campo">
+
+        <label for="f-email">
+          E-mail de Contato:
+        </label>
+
+        <input
+          type="email"
+          id="f-email"
+          name="f-email"
+          placeholder="seu@email.com"
+          required
+        >
+
+      </div>
+
+
+      <div class="grupo-campo">
+
+        <label for="f-whatsapp">
+          WhatsApp / Celular:
+        </label>
+
+        <input
+          type="text"
+          id="f-whatsapp"
+          name="f-whatsapp"
+          placeholder="(00) 00000-0000"
+          required
+        >
+
+      </div>
+
+
+      <div class="grupo-campo">
+
+        <label for="f-cidade">
+          Cidade / Estado:
+        </label>
+
+        <input
+          type="text"
+          id="f-cidade"
+          name="f-cidade"
+          placeholder="Ex: Parauapebas-PA"
+          required
+        >
+
+      </div>
+
+
+      <div class="grupo-campo">
+
+        <label for="f-profissao">
+          Sua Profissão / Cargo:
+        </label>
+
+        <input
+          type="text"
+          id="f-profissao"
+          name="f-profissao"
+          placeholder="Ex: Microempreendedor, Gerente..."
+          required
+        >
+
+      </div>
+
+
+      <hr style="margin: 20px 0;">
+
+
+      <!-- ==================================================
+           PESQUISA DO CANDIDATO
+           ================================================== -->
+
+      <div
+        id="perguntas-candidato"
+        style="display: none;"
+      >
+
+        <!-- PERGUNTA 1 -->
+
+        <div
+          class="grupo-campo"
+          style="margin-bottom: 20px;"
+        >
+
+          <label>
+            1. Como você avalia a facilidade de navegação no sistema?
+          </label>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-nav-muito"
+              name="f-cand-navegacao"
+              value="Muito fácil"
+            >
+            <label for="cand-nav-muito">
+              Muito fácil
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-nav-facil"
+              name="f-cand-navegacao"
+              value="Fácil"
+            >
+            <label for="cand-nav-facil">
+              Fácil
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-nav-razoavel"
+              name="f-cand-navegacao"
+              value="Razoável"
+            >
+            <label for="cand-nav-razoavel">
+              Razoável
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-nav-dificil"
+              name="f-cand-navegacao"
+              value="Difícil"
+            >
+            <label for="cand-nav-dificil">
+              Difícil
+            </label>
+          </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 2 -->
+
+        <div
+          class="grupo-campo"
+          style="margin-bottom: 20px;"
+        >
+
+          <label>
+            2. As vagas exibidas atenderam às suas expectativas?
+          </label>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-vagas-sim"
+              name="f-cand-vagas"
+              value="Sim, exatamente"
+            >
+            <label for="cand-vagas-sim">
+              Sim, exatamente
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-vagas-parcial"
+              name="f-cand-vagas"
+              value="Parcialmente"
+            >
+            <label for="cand-vagas-parcial">
+              Parcialmente
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-vagas-nao"
+              name="f-cand-vagas"
+              value="Não encontrei o que precisava"
+            >
+            <label for="cand-vagas-nao">
+              Não encontrei o que precisava
+            </label>
+          </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 3 -->
+
+        <div
+          class="grupo-campo"
+          style="margin-bottom: 20px;"
+        >
+
+          <label>
+            3. Você já teve contato ou utilizou alguma ferramenta parecida para buscar empregos?
+          </label>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-ferramenta-nunca"
+              name="f-cand-ferramenta"
+              value="Nunca usei"
+            >
+            <label for="cand-ferramenta-nunca">
+              Nunca usei
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-ferramenta-ja"
+              name="f-cand-ferramenta"
+              value="Já usei ferramentas parecidas"
+            >
+            <label for="cand-ferramenta-ja">
+              Já usei ferramentas parecidas
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-ferramenta-usa"
+              name="f-cand-ferramenta"
+              value="Utilizo atualmente"
+            >
+            <label for="cand-ferramenta-usa">
+              Utilizo atualmente
+            </label>
+          </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 4 -->
+
+        <div
+          class="grupo-campo"
+          style="margin-bottom: 20px;"
+        >
+
+          <label>
+            4. Você utilizaria a versão final deste produto para buscar empregos?
+          </label>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-usaria-sim"
+              name="f-cand-usaria"
+              value="Com certeza"
+            >
+            <label for="cand-usaria-sim">
+              Com certeza
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-usaria-talvez"
+              name="f-cand-usaria"
+              value="Talvez"
+            >
+            <label for="cand-usaria-talvez">
+              Talvez
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-usaria-nao"
+              name="f-cand-usaria"
+              value="Não"
+            >
+            <label for="cand-usaria-nao">
+              Não
+            </label>
+          </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 5 -->
+
+        <div
+          class="grupo-campo"
+          style="margin-bottom: 20px;"
+        >
+
+          <label>
+            5. Qual valor você atribui à possibilidade de enviar seu currículo diretamente para os contratantes?
+          </label>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-valor-muito"
+              name="f-cand-valor"
+              value="Muito importante"
+            >
+            <label for="cand-valor-muito">
+              Muito importante
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-valor-importante"
+              name="f-cand-valor"
+              value="Importante"
+            >
+            <label for="cand-valor-importante">
+              Importante
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-valor-pouco"
+              name="f-cand-valor"
+              value="Pouco importante"
+            >
+            <label for="cand-valor-pouco">
+              Pouco importante
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="cand-valor-nao"
+              name="f-cand-valor"
+              value="Não considero importante"
+            >
+            <label for="cand-valor-nao">
+              Não considero importante
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           PESQUISA DO CONTRATANTE
+           ================================================== -->
+
+      <div
+        id="perguntas-contratante"
+        style="display: none;"
+      >
+
+        <!-- PERGUNTA 1 -->
+
+        <div
+          class="grupo-campo"
+          style="margin-bottom: 20px;"
+        >
+
+          <label>
+            1. Como você avalia a facilidade de busca no site?
+          </label>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-facil-muito"
+              name="f-emp-facilidade"
+              value="Muito fácil"
+            >
+            <label for="emp-facil-muito">
+              Muito fácil
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-facil-razoavel"
+              name="f-emp-facilidade"
+              value="Razoável"
+            >
+            <label for="emp-facil-razoavel">
+              Razoável
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-facil-dificil"
+              name="f-emp-facilidade"
+              value="Difícil"
+            >
+            <label for="emp-facil-dificil">
+              Difícil
+            </label>
+          </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 2 -->
+
+        <div
+          class="grupo-campo"
+          style="margin-bottom: 20px;"
+        >
+
+          <label>
+            2. Os resultados de profissionais atenderam às suas expectativas?
+          </label>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-result-sim"
+              name="f-emp-resultados"
+              value="Sim, exatamente"
+            >
+            <label for="emp-result-sim">
+              Sim, exatamente
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-result-parcial"
+              name="f-emp-resultados"
+              value="Parcialmente"
+            >
+            <label for="emp-result-parcial">
+              Parcialmente
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-result-nao"
+              name="f-emp-resultados"
+              value="Não encontrei o que precisava"
+            >
+            <label for="emp-result-nao">
+              Não encontrei o que precisava
+            </label>
+          </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 3 -->
+        <!-- Alterada porque o usuário ainda não recebeu
+             o resultado do Tradutor antes da pesquisa. -->
+
+        <div
+          class="grupo-campo"
+          style="margin-bottom: 20px;"
+        >
+
+          <label>
+            3. Você já utilizou alguma ferramenta ou serviço para encontrar profissionais para resolver uma necessidade da sua empresa?
+          </label>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-ferramenta-nunca"
+              name="f-emp-ferramenta"
+              value="Nunca usei"
+            >
+            <label for="emp-ferramenta-nunca">
+              Nunca usei
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-ferramenta-parecida"
+              name="f-emp-ferramenta"
+              value="Já usei ferramentas ou serviços parecidos"
+            >
+            <label for="emp-ferramenta-parecida">
+              Já usei ferramentas ou serviços parecidos
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-ferramenta-costuma"
+              name="f-emp-ferramenta"
+              value="Costumo utilizar esse tipo de ferramenta ou serviço"
+            >
+            <label for="emp-ferramenta-costuma">
+              Costumo utilizar esse tipo de ferramenta ou serviço
+            </label>
+          </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 4 -->
+
+        <div
+          class="grupo-campo"
+          style="margin-bottom: 20px;"
+        >
+
+          <label>
+            4. Você contrataria um profissional por esta plataforma?
+          </label>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-contrataria-certeza"
+              name="f-emp-contrataria"
+              value="Com certeza"
+            >
+            <label for="emp-contrataria-certeza">
+              Com certeza
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-contrataria-talvez"
+              name="f-emp-contrataria"
+              value="Talvez"
+            >
+            <label for="emp-contrataria-talvez">
+              Talvez
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="emp-contrataria-nao"
+              name="f-emp-contrataria"
+              value="Não"
+            >
+            <label for="emp-contrataria-nao">
+              Não
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           COMENTÁRIO LIVRE
+           ================================================== -->
+
+      <div
+        class="grupo-campo"
+        style="margin-bottom: 20px;"
+      >
+
+        <label for="f-faltou">
+          O que você achou da experiência? Conte o que gostou, o que não gostou ou o que poderia ser melhorado:
+        </label>
+
+        <textarea
+          id="f-faltou"
+          name="f-faltou"
+          rows="3"
+          placeholder="Conte o que você achou ou o que poderia melhorar..."
+        ></textarea>
+
+      </div>
+
+
+      <!-- ==================================================
+           BOTÃO DE ENVIO
+           ================================================== -->
+
+      <button
+        type="submit"
+        id="btn-enviar-pesquisa"
+        class="btn-dourado"
+      >
+        ENVIAR PESQUISA
+      </button>
+
+    </form>
+
+  </section>
+
+</main>
+
+
+<!-- ========================================================
+     SUPABASE
+     ======================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
+
+
+<!-- ========================================================
+     JAVASCRIPT DO SITE
+     ======================================================== -->
+
+<script src="script.js"></script>
+<script src="formulario.js"></script>
+
+</body>
+</html>
